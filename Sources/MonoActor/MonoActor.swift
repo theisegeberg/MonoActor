@@ -28,12 +28,6 @@ public actor MonoActor {
         return try await task.value
     }
     
-    /// Run a piece of code and cancel any ongoing pieces of code that is being run.
-    /// - Parameter f: The closure with the code to be run.
-    public func run(_ f: @escaping () async throws -> ()) async throws {
-        try await self.run<Void>(f)
-    }
-    
     public func cancel() {
         currentTaskCancellation?()
         currentTaskCancellation = nil
